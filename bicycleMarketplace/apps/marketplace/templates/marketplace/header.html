@@ -1,0 +1,17 @@
+{% block header %}
+    <h1>Bicycle Marketplace</h1>
+    {% if userId %}
+    <div id='header_menubar'>
+        <a href='/'>Home</a> |
+        <a href='/browse'>Browse</a> | 
+        <a href='/bikes'>My Listings</a> | 
+        <a href='/logout'>Log Out</a>
+    </div>
+    {% else %}
+    <div id='header_menubar'>
+        <a href='/'>Home</a> |
+        <a href='/browse'>Browse</a>
+
+    </div>
+    {% endif %}
+{% endblock %}

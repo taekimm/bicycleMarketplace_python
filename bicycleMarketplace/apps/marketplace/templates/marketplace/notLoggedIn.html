@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bicycle Marketplace</title>
+</head>
+
+<body>
+    <div id='header_block'>
+        {% include 'marketplace/header.html' %}
+        {% block header %}
+        {% endblock %}
+    </div>
+    <div id='error_block'>
+        <p>Uh oh, you are not logged in!</p>
+        <p>Please login or register to continue!</p>
+    </div>
+</body>
+
+</html>

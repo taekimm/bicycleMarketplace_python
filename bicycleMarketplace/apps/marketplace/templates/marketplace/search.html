@@ -1,0 +1,15 @@
+{% block search %}
+    <div id='search_bar'>
+        <form>
+            Search: <input type='text' placeholder='Search for bikes for sale!'>
+            <input type='submit' value='Search'>
+        </form>
+    </div>
+    <div id='search_results'>
+        {% for bike in results %}
+            {% include 'marketplace/bike.html' %}
+            {% block botd %}
+            {% endblock %}
+        {% endfor %}
+    </div>
+{% endblock %}

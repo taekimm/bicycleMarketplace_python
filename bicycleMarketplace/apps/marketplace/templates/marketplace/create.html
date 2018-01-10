@@ -1,0 +1,38 @@
+{% block create %}
+<div id='bike'>
+    <div id='bike_infobox'>
+        <h2>Create Listing</h2>
+        <div>
+            <!-- Placeholder -->
+            <div id='img_upload'>
+                <div id='picture_preview'></div>
+                <form id='create_form' action='/createbike' method='POST' enctype='multipart/form-data'>
+                {% csrf_token %}
+                <input type='file' id='file' name='picture' accept='image/*' onchange='handleFileSelect(this);'>
+            </div>
+            <div id='description_1'>
+                Title: <input type='text' name='title'>
+                Description: <textarea name='description' form='create_form'></textarea>
+            </div>
+            <div id='description_2'>
+                Price: <input type='number' name='price'>
+                Location: <input type='text' name='location'>
+                <input type='hidden' name='userId' value='{{userId}}'>
+                <input type='submit' value='Create!'>
+                </form>
+            </div>
+            <!-- end placeholder -->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function handleFileSelect(input) {
+        if (input.files && input.files[0]) {
+            previewURL = URL.createObjectURL(input.files[0]);
+            document.getElementById('picture_preview').innerHTML = ['<img src="', previewURL, '" title="',input.files[0].name, '" width="50" />'].join('');
+        }
+    }
+
+</script>
+{% endblock %}

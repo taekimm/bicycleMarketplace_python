@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bicycle Marketplace</title>
+</head>
+
+<body>
+    <div id='header_block'>
+        {% include 'marketplace/header.html' %}
+        {% block header %}
+        {% endblock %}
+    </div>
+    <div id='createListing_block'>
+        {% include 'marketplace/create.html' %}
+        {% block create %}
+        {% endblock %}
+    </div>
+    <div id='editListing_block'>
+        <h2>Edit/Delete Listings</h2>
+        {% for bike in userListings %}
+        {% include 'marketplace/edit.html' %}
+        {% block edit %}
+        {% endblock %}
+    </div>
+    {% endfor %}
+</body>
+
+</html>

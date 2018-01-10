@@ -1,0 +1,13 @@
+{% block register %}
+    <div id='register'>
+        <form action='/register' method='post'>
+            {% csrf_token %}
+            *First Name: <input type='text' name='fname'>
+            *Last Name: <input type='text' name='lname'>
+            *Email: <input type='email' name='email'>
+            *Password: <input type='password' name='password'>
+            *Password Confirmation: <input type='password' name='password_confirm'>
+            <input type='submit' value='Register'>
+        </form>
+    </div>
+{% endblock %}
