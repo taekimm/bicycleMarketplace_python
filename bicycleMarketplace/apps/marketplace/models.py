@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.db import models
+
+# Create your models here.
 from django.core.validators import MaxValueValidator, MinValueValidator
 import re, bcrypt, datetime
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -49,45 +48,45 @@ class UserManager(models.Manager):
         if len(errors) == 0:
             # using get to see if there are multiple users with said email
             # if .get() errors out, user with that email already exists.
-			try:
-				User.objects.get(email=data['email'])
-				errors.append('User with that email already exists')
-				return errors
-			except: 
-				user = User.objects.create(fname=data['fname'], lname=data['lname'], email=data['email'], password=bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt()))
-				return user.id
+            try:
+                User.objects.get(email=data['email'])
+                errors.append('User with that email already exists')
+                return errors
+            except: 
+                user = User.objects.create(fname=data['fname'], lname=data['lname'], email=data['email'], password=bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt()))
+                return user.id
         else:
-			return errors
+            return errors
 
     # login function
     def login(self, data):
-		errors = []
+        errors = []
 
 		# checking if email is input
-		if len(data['email']) < 1:
-			errors.append('Email required')
+        if len(data['email']) < 1:
+            errors.append('Email required')
 
 		# checking email format w/ regex
-		if not EMAIL_REGEX.match(data['email']):
-			errors.append('Email must be in valid format')
+        if not EMAIL_REGEX.match(data['email']):
+            errors.append('Email must be in valid format')
 
 		# checking length of password
-		if len(data['password']) < 8:
-			errors.append('Password must be 8 characters or longer')
+        if len(data['password']) < 8:
+            errors.append('Password must be 8 characters or longer')
 
 		# if no errors appened
-		if len(errors) == 0:
+        if len(errors) == 0:
 			# try to get THE user - if the user does not exist, go to except
-			try:
-				user = User.objects.get(email__iexact=data['email'])
-				encrypted_pw = bcrypt.hashpw(data['password'].encode(), user.password.encode())
-				if encrypted_pw == user.password.encode():
-					return user.id
-			except: 
-				errors.append('User authentication failed')
-				return errors
-		else:
-			return errors
+            try:
+                user = User.objects.get(email__iexact=data['email'])
+                encrypted_pw = bcrypt.hashpw(data['password'].encode(), user.password.encode())
+                if encrypted_pw == user.password.encode():
+                    return user.id
+            except: 
+                errors.append('User authentication failed')
+                return errors
+        else:
+            return errors
 
 class User(models.Model):
 	def __unicode__(self):
@@ -128,6 +127,7 @@ class BikeManager(models.Manager):
 
 class Bike(models.Model):
     def __unicode__(self):
+        # returning what it displays in the admin panel
         return str(self.title) + ' sold by: ' + str(self.seller)
 
     title = models.CharField(max_length = 255)
@@ -136,10 +136,8 @@ class Bike(models.Model):
     price = models.IntegerField()
     city = models.CharField(max_length = 255)
     state = models.CharField(max_length = 255)
-    seller = models.ForeignKey(User)
+    seller = models.ForeignKey(User, on_delete = models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     # to use BikeManager
     objects = BikeManager()
-
-

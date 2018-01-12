@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from .models import User, Bike
 
 from io import BytesIO
@@ -117,43 +114,12 @@ def bikes(request):
         return render(request, 'marketplace/listings.html', context)
 
 def createbike(request):
-    print request.POST
-    # print request.FILES['picture']
+    #print(request.POST)
+    #print(request.FILES['picture'])
     picture  = request.FILES['picture']
 
-    with open(picture, 'rb') as image_file:
-        # encoded_string = base64.b64encode(image_file.read())
-        # cloudinary_response = cloudinary.uploader.upload(encoded_string)
-        # print cloudinary_response
-
-        cloudinary_response = cloudinary.uploader.upload(image_file.read())
-
-    
-    # with picture.open('rb') as image_file:
-    #     encoded_string = base64.b64encode(image_file.read())
-
-    # encoded_string = base64.b64encode(request.FILES['picture'].read())
-
-    
-    
-
-    # image_read = picture.read()
-    # image_64_encode = base64.encodestring(image_read)
-    # # image_64_decode = base64.decodestring(image_64_encode)
-    # # image_result = open(request.FILES['picture'], 'wb')
-
-    # picture = BytesIO(image_64_encode)
-    # cloudinary.uploader.upload(picture)
-    
-        
-    # picture = BytesIO(request.FILES['picture'].read())
-    # print 'PASSED BytesIO'
-    
-    # result = cloudinary.uploader.upload(picture)
-    # print 'PASSED UPLOAD'
-    # print result
-
-
+    cloudinary_response = cloudinary.uploader.upload(picture)
+    picture_url = cloudinary_response['url']
 
 def updatebike(request):
     pass
