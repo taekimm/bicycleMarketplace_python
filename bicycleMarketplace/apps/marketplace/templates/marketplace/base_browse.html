@@ -1,0 +1,17 @@
+{% extends 'marketplace/base.html' %}
+
+{% block browse %}
+	{% block search %}
+		{% include 'marketplace/components/search.html' %}
+	{% endblock %}
+
+	{% block bikeBrowse %}
+		{% include 'marketplace/components/bikeBrowse.html' %}
+	{% endblock %}
+
+<script type='text/javascript'>
+    function bikeSelect(input) {
+        window.location.href = '/bikes/' + input 
+    }
+</script>
+{% endblock %}

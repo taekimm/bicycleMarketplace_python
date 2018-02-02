@@ -8,14 +8,21 @@
 </head>
 <body>
     <div id='header_block'>
-        {% include 'marketplace/header.html' %}
+        {% include 'marketplace/components/header.html' %}
         {% block header %}
         {% endblock %}
     </div>
-    <div id='search_block'>
-        {% include 'marketplace/search.html' %}
-        {% block search %}
-        {% endblock %}
-    </div>
+    {% block index %}
+    {% endblock %}
+
+    {% block browse %}
+    {% endblock %}
+
+    {% block listing %}
+    {% endblock %}
+
+    {% block viewBike %}
+    {% endblock %}
+
 </body>
 </html>

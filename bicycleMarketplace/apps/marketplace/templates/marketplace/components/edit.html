@@ -1,0 +1,27 @@
+{% block edit %}
+<div id='bike'>
+    <div id='bike_infobox'>
+        <div>
+            <!-- Placeholder -->
+            <div id='description_1'>
+                <form id='create_form_{{bike.id}}' action='/bikes/update/{{bike.id}}' method='POST' enctype='multipart/form-data'>
+                <img id='picture_preview' style='height:100px;width:100px' src='{{bike.img}}'>
+                {% csrf_token %}
+                <input type='file' id='file' name='picture' accept='image/*' onchange='handleFileSelect(this);'>
+                Title: <input type='text' name='title' value='{{bike.title}}'>
+                Description: <textarea name='description' form='create_form_{{bike.id}}'>{{bike.description}}</textarea>
+            </div>
+            <div id='description_2'>
+                Price:
+                <input type='number' name='price' value='{{bike.price}}'>
+                City: <input type='text' name='city' value='{{bike.city}}'>
+                State: <input type='text' name='state' value='{{bike.state}}'>
+                <input type='submit' value='Update!'>
+                <button><a href='{% url "delete" bikeId=bike.id %}'>Delete</a></button>
+                </form>
+            </div>
+            <!-- end placeholder -->
+        </div>
+    </div>
+</div>
+{% endblock %}

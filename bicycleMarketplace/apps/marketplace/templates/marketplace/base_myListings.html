@@ -1,0 +1,31 @@
+{% extends 'marketplace/base.html' %}
+
+{% block listing %}
+	<div id='createListing_block'>
+	    {% include 'marketplace/components/create.html' %}
+	    {% block create %}
+	    {% endblock %}
+	</div>
+	<div id='editListing_block'>
+	    <h2>Edit/Delete Listings</h2>
+	    {% for bike in userListings %}
+	    {% include 'marketplace/components/edit.html' %}
+	    {% block edit %}
+	    {% endblock %}
+	</div>
+	{% endfor %}
+
+
+	<script type="text/javascript">
+	    function handleFileSelect(input) {
+	        if (input.files && input.files[0]) {
+	            previewURL = URL.createObjectURL(input.files[0]);
+	            imgPreviewElement = input.parentNode.parentNode.querySelector(' #picture_preview')
+	            if (imgPreviewElement.style.visibility = 'hidden') {
+	                imgPreviewElement.style.visibility = 'visible';
+	            }
+	            imgPreviewElement.src = previewURL;
+	        }
+	    }
+	</script>
+{% endblock %}

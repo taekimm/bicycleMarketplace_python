@@ -1,0 +1,30 @@
+{% extends 'marketplace/base.html' %}
+
+{% block index %}
+    <div id='botd_block'>
+        {% block botd %}
+            {% include 'marketplace/components/botd.html' %}
+        {% endblock %}
+    </div>
+
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if not userId %}
+    <div id='login_reg_block'>
+        {% block login %}
+            {% include 'marketplace/components/login.html' %}
+        {% endblock %}
+        
+        {% block register %}
+            {% include 'marketplace/components/register.html' %}
+        {% endblock %}
+    </div>
+    {% endif %}
+
+{% endblock %}

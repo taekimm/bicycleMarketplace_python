@@ -1,0 +1,18 @@
+{% block bike %}
+<div id='bike' style='outline:1px solid black' onclick='bikeSelect({{bike.id}});'>
+    <div id='bike_infobox'>
+        <div id='bike_infobox_description'>
+            <img style='height:100px;width:100px' src='{{bike.img}}'>
+            <h2>{{bike.title}}</h2>
+            <p>{{bike.description}}</p>
+        </div>
+        <div id='bike_infobox_price'>
+            <h2>$ {{bike.price}}</h2>
+            <p>{{bike.city}}, {{bike.state}}</p>
+            {% if userId %}
+            
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
