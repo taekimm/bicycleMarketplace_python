@@ -1,10 +1,15 @@
-{% block login %}
+{% block loginForm %}
     <div id='login' >
-        <form action='/login' method='post'>
+    	<h3>Login</h3>
+        <form id='login' action='/login' method='post'>
             {% csrf_token %}
-            *Email: <input type='email' name='email'>
-            *Password: <input type='password' name='password'>
-            <input type='submit' value='Login'>
+            <label for='email'>*Email:</label>
+            <input type='email' name='email'>
+            <br/>
+            <label for='password'>*Password:</label>
+            <input type='password' name='password'>
+            <br/>
+            <input id='login' type='submit' value='Login'>
         </form>
     </div>
 {% endblock %}

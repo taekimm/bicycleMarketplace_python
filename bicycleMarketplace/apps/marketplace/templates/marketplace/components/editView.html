@@ -1,10 +1,7 @@
-{% block botd %}
+{% block editView %}
 <div id='bike'>
     <div id='bike-infobox'>
-        <h1>Bike of the Day!</h1>
-        <div id='bike-infobox' class='img'>
-            <img src='{{bike.img}}'>
-        </div>
+        <img src='{{bike.img}}' onclick='bikeSelect({{bike.id}});'>
         <div id='bike-infobox' class='description'>
             <h2>{{bike.title}}</h2>
             <p>{{bike.description}}</p>
@@ -12,9 +9,6 @@
         <div id='bike-infobox' class='price'>
             <h2>$ {{bike.price}}</h2>
             <p>{{bike.city}}, {{bike.state}}</p>
-            {% if userId %}
-            
-            {% endif %}
         </div>
     </div>
 </div>

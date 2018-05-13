@@ -1,30 +1,34 @@
 {% extends 'marketplace/base.html' %}
 
 {% block index %}
-    <div id='botd_block'>
+    <div id='botd-block'>
         {% block botd %}
             {% include 'marketplace/components/botd.html' %}
         {% endblock %}
     </div>
 
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
     {% if not userId %}
-    <div id='login_reg_block'>
-        {% block login %}
-            {% include 'marketplace/components/login.html' %}
-        {% endblock %}
-        
-        {% block register %}
-            {% include 'marketplace/components/register.html' %}
-        {% endblock %}
+    <div id='login-reg-block'>
+        <button onclick=modalShow("login");>Log in!</button>
+        <button onclick=modalShow("register");>Register!</button>
     </div>
     {% endif %}
+
+    <div id="modal">
+        <div id="loginModal" class="modal-content">
+            <span class="close" onclick=modalClose();>&times;</span>
+            {% block loginModal %}
+                    {% include 'marketplace/components/login.html' %}
+            {% endblock %}
+        </div>
+
+        <div id="registerModal" class="modal-content">
+            <span class="close" onclick=modalClose();>&times;</span>
+            {% block registerModal %}
+                    {% include 'marketplace/components/register.html' %}
+            {% endblock %}
+        </div>
+    </div>
+
 
 {% endblock %}

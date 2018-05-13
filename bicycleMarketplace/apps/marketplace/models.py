@@ -53,7 +53,7 @@ class UserManager(models.Manager):
         
         # password & password confirm check
         if data['password'] != data['password_confirm']:
-            errors.append('Passwords must match') 
+            errors.append('Passwords must match')
             
         # checking if passed error checks
         if len(errors) == 0:
@@ -116,26 +116,26 @@ class BikeManager(models.Manager):
     # add function
     def add(self, data):
         errors = []
+        
         try:
             seller = User.objects.get(id = data['sellerId'])
-
             # checks on Bike inputs
-            if len(data['title']) < 0:
+            if len(data['title']) < 1:
                 errors.append('Please enter a name of your bike')
             
-            if len(data['description']) < 0:
+            if len(data['description']) < 1:
                 errors.append('Please enter a description of your bike')
             
-            if len(data['img']) < 0:
+            if len(data['img']) < 1:
                 errors.append('Please attach an image of your bike')
             
-            if data['price'] < 0:
+            if not 'price' in data:
                 errors.append('Please enter a price for your bike')
 
-            if len(data['city']) < 0:
+            if len(data['city']) < 1:
                 errors.append('Please enter a city')
 
-            if len(data['state']) < 0:
+            if len(data['state']) < 1:
                 errors.append('Please enter a state')
         except:
             errors.append('User does not exist!')
@@ -152,19 +152,19 @@ class BikeManager(models.Manager):
             bike = Bike.objects.get(id = data['bikeId'])
 
             # checks on Bike inputs
-            if len(data['title']) < 0:
+            if len(data['title']) < 1:
                 errors.append('Please enter a name of your bike')
             
-            if len(data['description']) < 0:
+            if len(data['description']) < 1:
                 errors.append('Please enter a description of your bike')
             
-            if data['price'] < 0:
+            if not 'price' in data:
                 errors.append('Please enter a price for your bike')
 
-            if len(data['city']) < 0:
+            if len(data['city']) < 1:
                 errors.append('Please enter a city')
 
-            if len(data['state']) < 0:
+            if len(data['state']) < 1:
                 errors.append('Please enter a state')
         except:
             errors.append('Bike does not exist!')
@@ -213,7 +213,6 @@ class Bike(models.Model):
 class BotDManager(models.Manager):
     def BotD(self):
         def RandomBikeSelector():
-            # return Bike.objects.order_by('?').first()
             return Bike.objects.order_by('?').first()
         
         now = dt.now(timezone.utc)
@@ -228,18 +227,20 @@ class BotDManager(models.Manager):
             # if it has been 24+ hours
             if now - timedelta(hours = 24) >= BotDList[0].updated_at:
                 # code to select random bike
-                print("THIS IS THE CURRENT TIME, UTC " + str(dt.now(timezone.utc)))
-                print("THIS IS THE BIKE OF THE DAY " + str(BotDList[0].updated_at))
+                # print("THIS IS THE CURRENT TIME, UTC " + str(dt.now(timezone.utc)))
+                # print("THIS IS THE BIKE OF THE DAY " + str(BotDList[0].updated_at))
                 BikeOfTheDay = RandomBikeSelector()
-                BotD.objects.update(bike = BotDList[0].bike)
-        
+                # BotD.objects.update(bike = BotDList[0].bike)
+                BotD.objects.update(bike = BikeOfTheDay, updated_at = now)
+
         BikeOfTheDay = BotDList[0].bike
+        # print(BotDList[0].updated_at)
 
         return BikeOfTheDay
 
 class BotD(models.Model):
     def __unicode__(self):
-        return self
+        return str(self.updated_at)
 
     bike = models.ForeignKey(Bike, on_delete = models.DO_NOTHING)
     updated_at = models.DateTimeField(auto_now = True)

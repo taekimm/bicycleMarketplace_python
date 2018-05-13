@@ -1,0 +1,17 @@
+{% extends 'marketplace/base.html' %}
+
+{% block register %}
+	{% if messages %}
+	<ul>
+	    {% for message in messages %}
+	    <li>{{message}}</li>
+	    {% endfor %}
+	</ul>
+	{% endif %}
+	
+	{% block registerForm %}
+		{% include 'marketplace/components/register.html' %}
+	{% endblock %}
+
+
+{% endblock %}

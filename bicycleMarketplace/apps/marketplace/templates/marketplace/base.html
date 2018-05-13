@@ -5,24 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bicycle Marketplace</title>
+    {% load staticfiles %}
+    <link rel='stylesheet' type="text/css" href="{% static 'marketplace/css/style.css' %}" />
+    <script type="text/javascript" src="{% static 'marketplace/js/bicyclemarketplace.js' %}"></script>
 </head>
 <body>
-    <div id='header_block'>
-        {% include 'marketplace/components/header.html' %}
-        {% block header %}
+    <div class='wrapper'>
+        <div id='header'>
+            {% include 'marketplace/components/header.html' %}
+            {% block header %}
+            {% endblock %}
+        </div>
+
+
+        {% block index %}
         {% endblock %}
+
+        {% block browse %}
+        {% endblock %}
+
+        {% block listing %}
+        {% endblock %}
+
+        {% block viewBike %}
+        {% endblock %}
+
+        {% block login %}
+        {% endblock %}
+
+        {% block register %}
+        {% endblock %}
+
+        {% block editBike %}
+        {% endblock %}
+
+        {% block createBike %}
+        {% endblock %}
+
+        {% load staticfiles %}
     </div>
-    {% block index %}
-    {% endblock %}
-
-    {% block browse %}
-    {% endblock %}
-
-    {% block listing %}
-    {% endblock %}
-
-    {% block viewBike %}
-    {% endblock %}
-
 </body>
 </html>

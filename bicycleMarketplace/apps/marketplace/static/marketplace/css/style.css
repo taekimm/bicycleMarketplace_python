@@ -1,0 +1,168 @@
+* {
+	padding: 0;
+	margin: 0;
+	/*border: 1px dotted red;*/
+}
+
+.wrapper {
+	padding: 1rem 1rem 0;
+}
+
+/*Menu Bar Styling*/
+#header h1 {
+	text-align: center;
+	font-size: 36px;
+}
+
+#menubar {
+	background-color: #333;
+	padding: 10px 0px;
+}
+
+#menubar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+}
+
+#menubar li {
+    float: left;
+    border-right: 1px solid #bbb;
+    margin: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    text-align: center;
+}
+
+#menubar li:last-child {
+	border-right: none;
+}
+
+#menubar li:hover {
+	background-color: #111;
+}
+
+#menubar li a {
+	text-decoration: none;
+	color: white;
+	padding: 14px 14px;
+	font-size: 12px;
+}
+
+/*BotD Block Styling */
+
+#botd-block #bike-infobox {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	grid-auto-rows: minmax(auto, auto);
+}
+
+#botd-block #bike-infobox h1 {
+	font-size: 24px;
+	text-align: center;
+	grid-column: 1/3;
+}
+
+#botd-block #bike-infobox .img {
+	grid-column: 1/3;
+}
+
+#botd-block #bike-infobox img {
+	margin: 15px auto 15px auto;
+	width: 75%;
+}
+
+#botd-block #bike-infobox .description {
+	grid-column: 2/1;
+}
+
+#botd-block #bike-infobox .price {
+	grid-column: 2/3;
+}
+
+#botd-block #bike-infobox .description h2, p {
+	text-align: center;
+}
+
+#botd-block #bike-infobox .price p, .price h2 {
+	text-align: left !important;
+}
+
+/*Login Reg Block Styling */
+#login-reg-block {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: .5em;
+}
+
+#login-reg-block input {
+	max-width: 75%;
+	outline: none;
+	border: 1px solid #DDDDDD;
+}
+
+#login-reg-block input:focus {
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	border: 1px solid rgba(81, 203, 238, 1);
+}
+
+#login-reg-block input#register, input#login{
+	margin-top: 12px;
+	padding: 2px 10px;
+	border-radius: 12px;
+	background-color: #4CAF50;
+}
+
+/*Browse Block Styling */
+#bike-infobox img {
+	height:100px;
+	width:100px;
+}
+
+.pagination {
+	display: table;
+	margin: 0px auto;
+}
+
+
+
+#modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
